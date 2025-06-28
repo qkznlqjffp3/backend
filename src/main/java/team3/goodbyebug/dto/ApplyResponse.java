@@ -2,7 +2,7 @@ package team3.goodbyebug.dto;
 
 import lombok.Builder;
 import lombok.Getter;
-import team3.goodbyebug.domain.ApplyDomain;
+import team3.goodbyebug.domain.Apply;
 
 @Getter
 public class ApplyResponse {
@@ -18,7 +18,7 @@ public class ApplyResponse {
         this.selected = selected;
     }
 
-    public static ApplyResponse from(ApplyDomain apply) {
+    public static ApplyResponse of(Apply apply) {
         return ApplyResponse.builder()
                 .userId(apply.getUser().getId())              // 사용자 ID
                 .username(apply.getUser().getUsername())      // 사용자 이름

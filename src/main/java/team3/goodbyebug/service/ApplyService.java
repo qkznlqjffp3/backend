@@ -8,6 +8,7 @@ import team3.goodbyebug.domain.Apply;
 import team3.goodbyebug.domain.Post;
 import team3.goodbyebug.domain.User;
 import team3.goodbyebug.dto.ApplyRequest;
+import team3.goodbyebug.dto.ApplyResponse;
 import team3.goodbyebug.dto.SelectApplicantRequest;
 import team3.goodbyebug.repository.ApplyRepository;
 import team3.goodbyebug.repository.PostRepository;
@@ -25,7 +26,7 @@ public class ApplyService {
 
     // ✅ 1. 글에 지원하기
     @Transactional
-    public void applyToPost(ApplyRequest request) {
+    public ApplyResponse applyToPost(Long postId, ApplyRequest request) {
         Post post = postRepository.findById(request.getPostId())
                 .orElseThrow(() -> new EntityNotFoundException("해당 글을 찾을 수 없습니다."));
         User user = userRepository.findById(request.getUserId())
@@ -38,6 +39,8 @@ public class ApplyService {
                 .build();
 
         applyRepository.save(apply);
+
+        return ApplyResponse.of(apply);
     }
 
     // ✅ 2. 해당 글의 지원자 리스트 조회
@@ -54,5 +57,13 @@ public class ApplyService {
                 .orElseThrow(() -> new EntityNotFoundException("해당 지원 정보를 찾을 수 없습니다."));
 
         apply.setSelected(true);
+    }
+
+    public List<ApplyResponse> getApplicantIds(Long postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new EntityNotFoundException());
+        return applyRepository.findByPost(post).stream()
+                .map(apply -> ApplyResponse.of(apply))
+                .toList();
     }
 }

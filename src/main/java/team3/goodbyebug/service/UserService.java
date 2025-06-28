@@ -3,10 +3,11 @@ package team3.goodbyebug.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import team3.goodbyebug.domain.User;
+import team3.goodbyebug.domain.*;
 import team3.goodbyebug.dto.UserProfileResponse;
 import team3.goodbyebug.repository.UserRepository;
 import team3.goodbyebug.repository.PostRepository;
+import team3.goodbyebug.dto.PostResponse;
 
 import java.util.List;
 
@@ -34,18 +35,19 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostResponse> getPostsByStatuses(String username, List<String> statuses) {
-        List<Post> posts = postRepository.findByUserUsernameAndStatusIn(username, statuses);
+    public List<PostResponse> getPostsByUserIdAndStatuses(Long userId, List<String> statuses) {
+        List<Post> posts = postRepository.findByUserIdAndStatusIn(userId, statuses);
 
         return posts.stream()
-                .map(post -> PostResponse.builder()
-                        .postId(post.getId())
-                        .title(post.getTitle())
-                        .content(post.getContent())
-                        .status(post.getStatus())
-                        .createdAt(post.getCreatedAt())
-                        .build())
+                .map(PostResponse::of)
                 .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public Long getUserIdByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."))
+                .getId();
     }
 
 }
