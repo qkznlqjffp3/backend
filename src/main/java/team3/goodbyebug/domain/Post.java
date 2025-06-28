@@ -38,12 +38,15 @@ public class Post {
     private String bug_type;
 
     @Column(nullable = false)
+    private String location;
+
+    @Column(nullable = false)
     private Long price;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    public Post(Long user_id, String title, String content, String img_url, String status, int bug_size, String bug_type, Long price) {
+    public Post(Long user_id, String title, String content, String img_url, String status, int bug_size, String bug_type, String location, Long price) {
         this.userId = user_id;
         this.title = title;
         this.content = content;
@@ -51,6 +54,7 @@ public class Post {
         this.status = status;
         this.bug_size = bug_size;
         this.bug_type = bug_type;
+        this.location = location;
         this.price = price;
 
     }

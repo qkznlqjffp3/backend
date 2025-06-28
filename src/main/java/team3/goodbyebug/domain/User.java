@@ -13,7 +13,6 @@ import lombok.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -27,5 +26,5 @@ public class User {
     private Boolean canHandleFlyingBug; // 날벌레 잡을 수 있음
     private Boolean canHandleCrawlingBug; // 기어다니는 벌레 잡을 수 있음
 
-    private String bugSize;
+    private int bugSize;
 }

@@ -20,6 +20,7 @@ public class PostResponse {
     private final String status;
     private final int bug_size;
     private final String bug_type;
+    private final String location;
     private final Long price;
     private final LocalDateTime createdAt;
 
@@ -33,6 +34,7 @@ public class PostResponse {
                 .status(post.getStatus())
                 .bug_size(post.getBug_size())
                 .bug_type(post.getBug_type())
+                .location(post.getLocation())
                 .price(post.getPrice())
                 .createdAt(post.getCreatedAt())
                 .build();
