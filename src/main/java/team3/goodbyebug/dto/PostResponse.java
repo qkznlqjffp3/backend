@@ -26,7 +26,7 @@ public class PostResponse {
     public static PostResponse of(Post post) {
         return PostResponse.builder()
                 .id(post.getId())
-                .user_id(post.getUser_id())
+                .user_id(post.getUserId())
                 .title(post.getTitle())
                 .content(post.getContent())
                 .img_url(post.getImg_url())

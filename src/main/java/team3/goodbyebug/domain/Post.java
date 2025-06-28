@@ -17,7 +17,7 @@ public class Post {
     private Long id;
 
     @Column(nullable = false)
-    private Long user_id;
+    private Long userId;
 
     @Column(nullable = false)
     private String title;
@@ -44,7 +44,7 @@ public class Post {
     private LocalDateTime createdAt;
 
     public Post(Long user_id, String title, String content, String img_url, String status, int bug_size, String bug_type, Long price) {
-        this.user_id = user_id;
+        this.userId = user_id;
         this.title = title;
         this.content = content;
         this.img_url = img_url;

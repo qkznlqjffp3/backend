@@ -22,7 +22,7 @@ public class AddPostRequest {
 
     public Post toEntity() {
         return Post.builder()
-                .user_id(user_id)
+                .userId(user_id)
                 .title(title)
                 .content(content)
                 .img_url(img_url)

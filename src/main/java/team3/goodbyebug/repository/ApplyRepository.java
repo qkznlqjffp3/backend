@@ -15,5 +15,5 @@ public interface ApplyRepository extends JpaRepository<Apply, Long> {
     List<Apply> findByPost(Post post);
 
     // 게시글 ID와 사용자 ID로 Apply 조회
-    Optional<Apply> findByPostIdAndUserId(Long postId, Long userId);
+    Optional<Apply> findByPostIdAndUserId(Long post_id, Long user_id);
 }
