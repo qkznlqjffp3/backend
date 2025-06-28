@@ -12,6 +12,7 @@ public class ApplyRequest {
     private Long postId;
     private Long userId;
 
+
     public Apply toEntity(Post post, User user) {
         return Apply.builder()
                 .post(post)

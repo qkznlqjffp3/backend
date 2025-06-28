@@ -18,6 +18,7 @@ public class AddPostRequest {
     private String status;
     private int bug_size;
     private String bug_type;
+    private String location;
     private Long price;
 
     public Post toEntity() {
@@ -29,6 +30,7 @@ public class AddPostRequest {
                 .status(status)
                 .bug_size(bug_size)
                 .bug_type(bug_type)
+                .location(location)
                 .price(price)
                 .createdAt(LocalDateTime.now())
                 .build();
